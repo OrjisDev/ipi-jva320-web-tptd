@@ -26,16 +26,26 @@ public class SalarieController {
     @GetMapping("/salaries/aide/new")
     public String createsalaire(final ModelMap model) {
         SalarieAideADomicile salarie = new SalarieAideADomicile();
+        salarie.setId(null);
         model.addAttribute("salarie",salarie);
         return "detail_Salarie";
     }
 
-    @PostMapping("/salaries")
+    @PostMapping("/salaries/{id}")
     public String saveSalarie(@ModelAttribute SalarieAideADomicile salarie) {
-        try {
-            salarieAideADomicileService.creerSalarieAideADomicile(salarie);
-        }catch (SalarieException e) {
-            System.out.println(e.getMessage());
+        System.out.println(salarie.getId());
+        if(salarie.getId() != null && salarie.getId() != 0){
+            try {
+                salarieAideADomicileService.updateSalarieAideADomicile(salarie);
+            } catch (SalarieException e) {
+                System.out.println(e.getMessage());
+            }
+        }else {
+            try {
+                salarieAideADomicileService.creerSalarieAideADomicile(salarie);
+            } catch (SalarieException e) {
+                System.out.println(e.getMessage());
+            }
         }
         return "redirect:/salaries/";
     }
