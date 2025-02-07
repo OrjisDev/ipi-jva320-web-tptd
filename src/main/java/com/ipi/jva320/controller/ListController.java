@@ -16,6 +16,7 @@ public class ListController {
     @GetMapping("/salaries")
     public String list(final ModelMap model) {
         model.addAttribute("salaries", salarieAideADomicileService.getSalaries());
+        model.put("employeeAmount",salarieAideADomicileService.countSalaries());
         return "list";
     }
 
