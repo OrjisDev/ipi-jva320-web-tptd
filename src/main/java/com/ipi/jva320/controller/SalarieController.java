@@ -6,10 +6,7 @@ import com.ipi.jva320.service.SalarieAideADomicileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class SalarieController {
@@ -39,7 +36,7 @@ public class SalarieController {
         } catch (SalarieException e) {
             throw new RuntimeException(e);
         }
-        return "redirect:/salaries/";
+        return "redirect:/salaries?page=0&size=10&sortProperty=id&sortDirection=ASC";
     }
 
     @PostMapping("/salaries/")
@@ -49,7 +46,7 @@ public class SalarieController {
          } catch (SalarieException e) {
              System.out.println(e.getMessage());
          }
-        return "redirect:/salaries/";
+        return "redirect:/salaries?page=0&size=10&sortProperty=id&sortDirection=ASC";
     }
 
     @PostMapping("/salaries/{id}")
@@ -59,7 +56,7 @@ public class SalarieController {
          } catch (SalarieException e) {
              System.out.println(e.getMessage());
          }
-        return "redirect:/salaries/";
+        return "redirect:/salaries?page=0&size=10&sortProperty=id&sortDirection=ASC";
     }
 
 
